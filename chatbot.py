@@ -94,7 +94,7 @@ async def chat_bot_fn(event, type_):
 @ultroid_bot.on(events.NewMessage(incoming=True))
 async def chatBot_replies(e):
     sender = await e.get_sender()
-    if sender.bot:
+    if not sender or getattr(sender, 'bot', False):
         return
     key = udB.get_key("CHATBOT_USERS") or {}
     if e.text and key.get(e.chat_id) and sender.id in key[e.chat_id]:
