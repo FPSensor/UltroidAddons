@@ -24,7 +24,7 @@ async def im_lonely_chat_with_me(event):
         try:
             message = event.text.split(" ", 1)[1]
         except IndexError:
-            return await eod(event, get_string("tban_1"), time=10)
+            return await event.reply(get_string("tban_1"))
     reply_ = await get_chatbot_reply(message=message)
     await event.eor(reply_)
 
